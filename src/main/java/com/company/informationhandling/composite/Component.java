@@ -7,4 +7,5 @@ public interface Component {
     List<Component> getComponents() throws OperationNotSupportedException;
     boolean addComponent(Component component) throws OperationNotSupportedException;
     boolean removeComponent(Component component) throws OperationNotSupportedException;
+    String getMark();
 }

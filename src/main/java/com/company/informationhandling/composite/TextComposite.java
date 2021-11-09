@@ -12,6 +12,11 @@ public class TextComposite implements Component{
     }
 
     @Override
+    public String getMark() {
+        return mark;
+    }
+
+    @Override
     public boolean addComponent(Component component) {
         return components.add(component);
     }

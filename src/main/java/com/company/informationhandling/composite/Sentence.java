@@ -11,7 +11,7 @@ public class Sentence implements Component{
         this.sentence = sentence;
     }
 
-    public static String getMark() {
+    public String getMark() {
         return mark;
     }
 

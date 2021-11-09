@@ -12,7 +12,7 @@ public class Text implements Component{
     }
 
 
-    public static String getMark() {
+    public String getMark() {
         return mark;
     }
 

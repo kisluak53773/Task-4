@@ -11,7 +11,7 @@ public class Paragraph implements Component{
         this.paragraph = paragraph;
     }
 
-    public static String getMark() {
+    public String getMark() {
         return mark;
     }
 
