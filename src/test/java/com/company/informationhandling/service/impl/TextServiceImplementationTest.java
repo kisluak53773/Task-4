@@ -68,8 +68,8 @@ public class TextServiceImplementationTest {
         Text text=new Text(reader.Read(loader.getResource("data/data.txt").toURI()));
         composite.addComponent(text);
         Component result=parser.handleRequest(composite);
-        String expected="The point of using Ipsum is that it has a\r\n" +
-                "moreorless normal distribution ob.toStringa?b:c as opposed to using Content here\r\n" +
+        String expected="The point of using Ipsum is that it has a\n" +
+                "moreorless normal distribution ob.toStringa?b:c as opposed to using Content here\n" +
                 "content here's making it look like readable English?";
         String actual=service.sentenceWithLongestWord(result);
         assertEquals(actual,expected);
@@ -85,17 +85,17 @@ public class TextServiceImplementationTest {
         Text text=new Text(reader.Read(loader.getResource("data/data.txt").toURI()));
         composite.addComponent(text);
         Component result=parser.handleRequest(composite);
-        String expected="It has survived - not only (five) centuries, but also the leap into electronic\r\n" +
-                "typesetting, remaining essentially unchanged It was popularised in the “Динамо” (Рига)\r\n" +
-                "with the release of Letraset sheets.toString() containing Lorem Ipsum passages, and\r\n" +
-                "more recently with desktop publishing software like Aldus PageMaker Faclon9 including\r\n" +
-                "versions of Lorem Ipsum!\r\n" +
-                "\r\n" +
-                "  It is a long a!=b established fact that a reader will be distracted by the readable\r\n" +
-                "content of a page when looking at its layout The point of using Ipsum is that it has a\r\n" +
-                "more-or-less normal distribution ob.toString(a?b:c), as opposed to using (Content here),\r\n" +
-                "content here's, making it look like readable English?\r\n" +
-                "\r\n" +
+        String expected="It has survived - not only (five) centuries, but also the leap into electronic\n" +
+                "typesetting, remaining essentially unchanged It was popularised in the “Динамо” (Рига)\n" +
+                "with the release of Letraset sheets.toString() containing Lorem Ipsum passages, and\n" +
+                "more recently with desktop publishing software like Aldus PageMaker Faclon9 including\n" +
+                "versions of Lorem Ipsum!\n" +
+                "\n" +
+                "  It is a long a!=b established fact that a reader will be distracted by the readable\n" +
+                "content of a page when looking at its layout The point of using Ipsum is that it has a\n" +
+                "more-or-less normal distribution ob.toString(a?b:c), as opposed to using (Content here),\n" +
+                "content here's, making it look like readable English?\n" +
+                "\n" +
                 "  It is a established fact that a reader will be of a page when looking at its layout...";
         String actual=service.deleteSentenceByNumber(result,3);
         assertEquals(actual,expected);

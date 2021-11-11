@@ -15,6 +15,7 @@ public class TextServiceImplementation implements TextService {
     private static final String WORD_DELIMITER2="\\s\\b";
     private static final String PUNCTUATION_REGEX="[),(-]";
     private static final String END_PUNCTUATION="[!.?]";
+    private  static final String GARBAGE_REGEX="\\r";
 
     @Override
     public long countVowels(Component component) throws OperationNotSupportedException {
@@ -53,7 +54,7 @@ public class TextServiceImplementation implements TextService {
             Paragraph buffer=(Paragraph)a;
             sb.append(buffer.getParagraph()).append("\n ");
         }
-        return sb.toString().trim().replaceAll("\\r","");
+        return sb.toString().trim().replaceAll(GARBAGE_REGEX,"");
     }
 
     @Override
@@ -79,7 +80,7 @@ public class TextServiceImplementation implements TextService {
                 }
             }
         }
-        return longestSentence.trim();
+        return longestSentence.trim().replaceAll(GARBAGE_REGEX,"");
     }
 
     @Override
@@ -104,7 +105,7 @@ public class TextServiceImplementation implements TextService {
             }
             sb.append("\n ");
         }
-        return sb.toString().trim();
+        return sb.toString().trim().replaceAll(GARBAGE_REGEX,"");
     }
 
     @Override
