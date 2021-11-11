@@ -108,7 +108,7 @@ public class TextServiceImplementation implements TextService {
     }
 
     @Override
-    public int findEqualStrings(Component component) throws OperationNotSupportedException {
+    public int countEqualStrings(Component component) throws OperationNotSupportedException {
         List<Component> components=component.getComponents();
         List<Component> sortedComponents=new ArrayList<>();
         List<String> words=new ArrayList<>();
@@ -127,6 +127,4 @@ public class TextServiceImplementation implements TextService {
         }
         return count;
     }
-
-
 }
