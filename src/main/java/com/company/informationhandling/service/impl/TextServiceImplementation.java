@@ -51,9 +51,9 @@ public class TextServiceImplementation implements TextService {
         StringBuilder sb=new StringBuilder();
         for(Component a:sortedComponents){
             Paragraph buffer=(Paragraph)a;
-            sb.append(buffer.getParagraph()).append("\n\n ");
+            sb.append(buffer.getParagraph()).append("\n ");
         }
-        return sb.toString();
+        return sb.toString().trim().replaceAll("\\r","");
     }
 
     @Override
@@ -79,7 +79,7 @@ public class TextServiceImplementation implements TextService {
                 }
             }
         }
-        return longestSentence;
+        return longestSentence.trim();
     }
 
     @Override
@@ -104,7 +104,7 @@ public class TextServiceImplementation implements TextService {
             }
             sb.append("\n ");
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 
     @Override

@@ -29,6 +29,6 @@ public class Main {
         Text text=new Text(reader.Read(loader.getResource("data/data.txt").toURI()));
         composite.addComponent(text);
         Component result=parser.handleRequest(composite);
-        logger.info(service.countVowels(result));
+        logger.info(service.sortParagraphs(result));
     }
 }
