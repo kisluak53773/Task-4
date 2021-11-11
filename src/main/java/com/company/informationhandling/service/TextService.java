@@ -9,4 +9,5 @@ public interface TextService {
     String sortParagraphs(Component component) throws OperationNotSupportedException;
     String sentenceWithLongestWord(Component component)throws OperationNotSupportedException;
     String deleteSentenceByNumber(Component component,int limit)throws OperationNotSupportedException;
+    int findEqualStrings(Component component)throws OperationNotSupportedException;
 }

@@ -14,8 +14,9 @@ import javax.naming.OperationNotSupportedException;
 import java.awt.*;
 import java.io.File;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     private final static Logger logger= LogManager.getLogger();
@@ -28,6 +29,6 @@ public class Main {
         Text text=new Text(reader.Read(loader.getResource("data/data.txt").toURI()));
         composite.addComponent(text);
         Component result=parser.handleRequest(composite);
-        logger.info(service.sentenceWithLongestWord(result));
+        logger.info(service.findEqualStrings(result));
     }
 }

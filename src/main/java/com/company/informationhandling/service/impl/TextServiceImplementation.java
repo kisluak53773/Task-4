@@ -1,23 +1,24 @@
 package com.company.informationhandling.service.impl;
 
-import com.company.informationhandling.composite.Component;
-import com.company.informationhandling.composite.Paragraph;
-import com.company.informationhandling.composite.Sentence;
-import com.company.informationhandling.composite.Text;
+import com.company.informationhandling.composite.*;
 import com.company.informationhandling.service.TextService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class TextServiceImplementation implements TextService {
     private static final String VOWELS_REGEX="aeiouAEIOUаеёиоуюяэыАЕЁИОУЮЯЭЫ";
     private static final String PARAGRAPHS_DELIMITER="[!.?] \\t*";
     private static final String WORD_DELIMITER="\\s";
+    private static final String WORD_DELIMITER2="\\s\\b";
     private static final String PUNCTUATION_REGEX="[),(-]";
     private static final String END_PUNCTUATION="[!.?]";
+    private final static Logger logger= LogManager.getLogger();
 
     @Override
     public long countVowels(Component component) throws OperationNotSupportedException {
@@ -89,12 +90,46 @@ public class TextServiceImplementation implements TextService {
     public String deleteSentenceByNumber(Component component,int limit) throws OperationNotSupportedException {
         List<Component> components=component.getComponents();
         List<Component> sortedComponents=new ArrayList<>();
+        StringBuilder sb=new StringBuilder();
         for(Component object:components){
             if(object.getMark().equals("Paragraph")){
                 sortedComponents.add(object);
             }
         }
-        return null;
+        for(Component object:sortedComponents){
+            Paragraph paragraph=(Paragraph) object;
+            String[] sentences=paragraph.getParagraph().split(PARAGRAPHS_DELIMITER);
+            for(String str:sentences){
+                sb.append("\s");
+                String[] words=str.split(WORD_DELIMITER2);
+                if(words.length>=limit){
+                    sb.append(str);
+                }
+            }
+            sb.append("\n ");
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public int findEqualStrings(Component component) throws OperationNotSupportedException {
+        List<Component> components=component.getComponents();
+        List<Component> sortedComponents=new ArrayList<>();
+        List<String> words=new ArrayList<>();
+        for(Component a:components){
+            if(a.getMark().equals("Word")){
+                sortedComponents.add(a);
+            }
+        }
+        for(Component object:sortedComponents){
+            Word word=(Word)object;
+            words.add(word.getWord().toLowerCase());
+        }
+        int count=0;
+        for(String str:words){
+            count+= Collections.frequency(words, str);
+        }
+        return count;
     }
 
 
