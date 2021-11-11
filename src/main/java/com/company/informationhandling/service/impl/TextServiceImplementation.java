@@ -2,14 +2,11 @@ package com.company.informationhandling.service.impl;
 
 import com.company.informationhandling.composite.*;
 import com.company.informationhandling.service.TextService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public class TextServiceImplementation implements TextService {
     private static final String VOWELS_REGEX="aeiouAEIOUаеёиоуюяэыАЕЁИОУЮЯЭЫ";
@@ -18,7 +15,6 @@ public class TextServiceImplementation implements TextService {
     private static final String WORD_DELIMITER2="\\s\\b";
     private static final String PUNCTUATION_REGEX="[),(-]";
     private static final String END_PUNCTUATION="[!.?]";
-    private final static Logger logger= LogManager.getLogger();
 
     @Override
     public long countVowels(Component component) throws OperationNotSupportedException {
