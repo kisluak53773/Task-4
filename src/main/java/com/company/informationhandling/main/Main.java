@@ -2,6 +2,7 @@ package com.company.informationhandling.main;
 
 import com.company.informationhandling.chain.ParagraphParser;
 import com.company.informationhandling.composite.Component;
+import com.company.informationhandling.composite.Sentence;
 import com.company.informationhandling.composite.Text;
 import com.company.informationhandling.composite.TextComposite;
 import com.company.informationhandling.reader.FileReader;
@@ -13,6 +14,7 @@ import javax.naming.OperationNotSupportedException;
 import java.awt.*;
 import java.io.File;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -26,6 +28,6 @@ public class Main {
         Text text=new Text(reader.Read(loader.getResource("data/data.txt").toURI()));
         composite.addComponent(text);
         Component result=parser.handleRequest(composite);
-        logger.info(service.sortParagraphs(result));
+        logger.info(service.sentenceWithLongestWord(result));
     }
 }

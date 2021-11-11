@@ -8,7 +8,9 @@ import javax.naming.OperationNotSupportedException;
 import java.util.List;
 
 public class SentenceParser extends AbstractHandler{
-    private final static String SENTENCE_REGEX="[!.?\\n] \\t*";
+    private static final String SENTENCE_REGEX="[!.?\\n] \\t*";
+    private WordParser successor=new WordParser();
+
     @Override
     public Component handleRequest(Component component) throws OperationNotSupportedException {
         List<Component> components=component.getComponents();
@@ -17,6 +19,6 @@ public class SentenceParser extends AbstractHandler{
         for (String object:sentences){
             component.addComponent(new Sentence(object));
         }
-        return component;
+        return successor.handleRequest(component);
     }
 }

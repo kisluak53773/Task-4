@@ -3,21 +3,12 @@ package com.company.informationhandling.composite;
 import javax.naming.OperationNotSupportedException;
 import java.util.List;
 
-public class Text implements Component{
-    private final static String mark="Text";
-    private String text;
+public class Word implements Component {
+    private final static String mark="Word";
+    private String word;
 
-    public Text(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public String getMark() {
-        return mark;
-    }
-
-    public String getText() {
-        return text;
+    public Word(String word) {
+        this.word = word;
     }
 
     @Override
@@ -27,7 +18,7 @@ public class Text implements Component{
 
     @Override
     public boolean addComponent(Component component) throws OperationNotSupportedException {
-        throw  new OperationNotSupportedException("Leaf doesn't support this operation");
+        return false;
     }
 
     @Override
@@ -35,7 +26,12 @@ public class Text implements Component{
         throw  new OperationNotSupportedException("Leaf doesn't support this operation");
     }
 
-    public void setText(String text) {
-        this.text = text;
+    @Override
+    public String getMark() {
+        return mark;
+    }
+
+    public String getWord() {
+        return word;
     }
 }

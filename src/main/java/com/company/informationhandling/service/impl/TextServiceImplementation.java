@@ -2,6 +2,7 @@ package com.company.informationhandling.service.impl;
 
 import com.company.informationhandling.composite.Component;
 import com.company.informationhandling.composite.Paragraph;
+import com.company.informationhandling.composite.Sentence;
 import com.company.informationhandling.composite.Text;
 import com.company.informationhandling.service.TextService;
 import org.apache.logging.log4j.LogManager;
@@ -12,8 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextServiceImplementation implements TextService {
-    private final static String VOWELS_REGEX="aeiouAEIOUаеёиоуюяэыАЕЁИОУЮЯЭЫ";
-    private final static String PARAGRAPHS_DELIMITER="[!.?] \\t*";
+    private static final String VOWELS_REGEX="aeiouAEIOUаеёиоуюяэыАЕЁИОУЮЯЭЫ";
+    private static final String PARAGRAPHS_DELIMITER="[!.?] \\t*";
+    private static final String WORD_DELIMITER="\\s";
+    private static final String PUNCTUATION_REGEX="[),(-]";
+    private static final String END_PUNCTUATION="[!.?]";
 
     @Override
     public long countVowels(Component component) throws OperationNotSupportedException {
@@ -53,6 +57,44 @@ public class TextServiceImplementation implements TextService {
             sb.append(buffer.getParagraph()).append("\n\n ");
         }
         return sb.toString();
+    }
+
+    @Override
+    public String sentenceWithLongestWord(Component component) throws OperationNotSupportedException {
+        List<Component> components=component.getComponents();
+        List<Component> sortedComponents=new ArrayList<>();
+        String longestSentence = null;
+        int max=0;
+        for (Component object:components){
+            if(object.getMark().equals("Sentence")){
+                sortedComponents.add(object);
+            }
+        }
+        for(Component object:sortedComponents) {
+            Sentence sentence = (Sentence) object;
+            String buffer = sentence.getSentence().replaceAll(PUNCTUATION_REGEX, "");
+            String[] words = buffer.split(WORD_DELIMITER);
+            words[words.length - 1] = words[words.length - 1].replaceAll(END_PUNCTUATION, "");
+            for(String str:words){
+                if(str.length()>max){
+                    max=str.length();
+                    longestSentence=buffer;
+                }
+            }
+        }
+        return longestSentence;
+    }
+
+    @Override
+    public String deleteSentenceByNumber(Component component,int limit) throws OperationNotSupportedException {
+        List<Component> components=component.getComponents();
+        List<Component> sortedComponents=new ArrayList<>();
+        for(Component object:components){
+            if(object.getMark().equals("Paragraph")){
+                sortedComponents.add(object);
+            }
+        }
+        return null;
     }
 
 

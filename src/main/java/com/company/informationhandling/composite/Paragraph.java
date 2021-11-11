@@ -11,6 +11,7 @@ public class Paragraph implements Component{
         this.paragraph = paragraph;
     }
 
+    @Override
     public String getMark() {
         return mark;
     }

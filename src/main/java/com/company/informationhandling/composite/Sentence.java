@@ -11,6 +11,7 @@ public class Sentence implements Component{
         this.sentence = sentence;
     }
 
+    @Override
     public String getMark() {
         return mark;
     }
